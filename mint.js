@@ -138,7 +138,7 @@ async function getToken(privateKey) {
 (async () => {
     const timesToMint = await askQuestion('How many times do you want to mint? ');
     const delayInMilliseconds = 2000; // Fixed delay of 2 seconds
-    const privateKey = '3ERF8HP6B2eAuWVBirR3TwGJVNbi6Lnp9LbzwXNagZDGgge5SEyBKMqxYp7x6vtG12EERiWZvaUfvbU4r7PuaPP7';
+    const privateKey = 'isi privatekey disini';
     
     for (let i = 0; i < timesToMint; i++) {
         console.log(`\nMinting attempt ${i + 1}`);
