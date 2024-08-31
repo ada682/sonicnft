@@ -1,10 +1,10 @@
 {
   "name": "sonic-odyssey-bot",
   "version": "1.0.0",
-  "description": "Sonic Odyssey Bot for SOL transactions and game operations",
-  "main": "index.js",
+  "description": "Sonic Odyssey Bot for Mystery NFT",
+  "main": "mint.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node mint.js"
   },
   "dependencies": {
     "@solana/web3.js": "^1.93.0",
