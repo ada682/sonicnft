@@ -9,7 +9,6 @@ const { HEADERS } = require('./src/headers');
 const DEVNET_URL = 'https://devnet.sonic.game/';
 const connection = new Connection(DEVNET_URL, 'confirmed');
 
-// Add these headers to potentially bypass CloudFront restrictions
 const ADDITIONAL_HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
   'Accept-Language': 'en-US,en;q=0.9',
@@ -19,7 +18,6 @@ const ADDITIONAL_HEADERS = {
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-// Function to get user input
 function askQuestion(query) {
     const rl = readline.createInterface({
         input: process.stdin,
@@ -39,7 +37,6 @@ async function mintMysteryNFT(privateKey) {
     
     console.log(`Minting Mystery NFT for ${publicKey}`);
 
-    // Step 1: Get the token
     const token = await getTokenWithRetry(privateKey);
     if (!token) {
       throw new Error('Failed to obtain authentication token after multiple attempts');
@@ -47,7 +44,6 @@ async function mintMysteryNFT(privateKey) {
 
     console.log('Token obtained successfully');
 
-    // Step 2: Build and send the transaction
     const { data: buildTxData } = await axios({
       url: 'https://odyssey-api-beta.sonic.game/nft-campaign/mint/unlimited/build-tx',
       method: 'GET',
@@ -64,7 +60,6 @@ async function mintMysteryNFT(privateKey) {
 
     console.log(`Transaction sent and confirmed: ${signature}`);
 
-    // Step 3: If this is the final step, no additional minting step is required.
 
   } catch (error) {
     console.error(`Error minting Mystery NFT: ${error.message}`);
@@ -137,13 +132,13 @@ async function getToken(privateKey) {
 
 (async () => {
     const timesToMint = await askQuestion('How many times do you want to mint? ');
-    const delayInMilliseconds = 2000; // Fixed delay of 2 seconds
+    const delayInMilliseconds = 2000;
     const privateKey = 'isi privatekey disini';
     
     for (let i = 0; i < timesToMint; i++) {
         console.log(`\nMinting attempt ${i + 1}`);
         await mintMysteryNFT(privateKey);
-        if (i < timesToMint - 1) { // Delay only if it's not the last attempt
+        if (i < timesToMint - 1) { 
             console.log(`Waiting for 2 seconds before next mint...`);
             await delay(delayInMilliseconds);
         }
